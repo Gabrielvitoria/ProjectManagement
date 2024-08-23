@@ -1,0 +1,17 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/ProjectManagement/.vs/ProjectManagement
+/ProjectManagement/obj
+/ProjectManagement/src/to/obj
+/ProjectManagement.Common/bin/Debug/net8.0
+/ProjectManagement.Common/obj
+/ProjectManagement.Domain/bin/Debug/net8.0
+/ProjectManagement.Domain/obj
+/ProjectManagement.Infra/bin/Debug/net8.0
+/ProjectManagement.Infra/obj
+/ProjectManagement.Services/bin/Debug/net8.0
+/ProjectManagement.Services/obj
+/ProjectManagement.Tests/bin/Debug/net8.0
+/ProjectManagement.Tests/obj
