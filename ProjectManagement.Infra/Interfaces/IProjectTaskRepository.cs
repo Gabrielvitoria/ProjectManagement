@@ -4,11 +4,11 @@ namespace ProjectManagement.Infra.Interfaces
 {
     public interface IProjectTaskRepository
     {
-        Task<IEnumerable<ProjectTask>> GetAllAsync();
+        Task<IEnumerable<ProjectTask>> GetByProjectIdAsync(Guid id);
         Task<ProjectTask> GetByIdAsync(Guid id);
-        Task<ProjectTask> CreateAsync(ProjectTask task);
-        Task<ProjectTask> CreateAsync(List<ProjectTask> tasks);
+        Task<ProjectTask> CreateAsync(ProjectTask projectTask, CancellationToken cancellationToken = default);
+        Task<int> CreateAsync(List<ProjectTask> tasks, CancellationToken cancellationToken = default);
         Task<ProjectTask> UpdateAsync(ProjectTask task);
-        Task<ProjectTask> DeleteAsync(ProjectTask task);
+        Task<int> DeleteAsync(ProjectTask task);
     }
 }

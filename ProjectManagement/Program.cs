@@ -23,6 +23,11 @@ builder.Services.AddAutoMapper(typeof(AutoMapperProfile));
 builder.Services.AddTransient<IProductService, ProjectService>();
 builder.Services.AddTransient<IProductRepository, ProductRepository>();
 
+builder.Services.AddTransient<IProjectTaskService, ProjectTaskService>();
+builder.Services.AddTransient<IProjectTaskRepository, ProjectTaskRepository>();
+
+
+
 
 var connectionString = builder.Configuration.GetConnectionString("Default");
 
