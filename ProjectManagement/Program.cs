@@ -1,6 +1,10 @@
 using Microsoft.EntityFrameworkCore;
 using ProjectManagement.Infra;
-using System;
+using ProjectManagement.Infra.Interfaces;
+using ProjectManagement.Infra.Repositories;
+using ProjectManagement.Services;
+using ProjectManagement.Services.Interfaces;
+using ProjectManagement.Services.Project;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +16,12 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddTransient<DbContextConfigurer>();
+builder.Services.AddAutoMapper(typeof(AutoMapperProfile));
+
+
+//Services and Reposytory
+builder.Services.AddTransient<IProductService, ProjectService>();
+builder.Services.AddTransient<IProductRepository, ProductRepository>();
 
 
 var connectionString = builder.Configuration.GetConnectionString("Default");
