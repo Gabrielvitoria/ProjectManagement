@@ -9,9 +9,9 @@ namespace ProjectManagement.Controllers
     [Route("[controller]")]
     public class ProjectController : ControllerBase
     {
-        private readonly IProductService _productService;
+        private readonly IProjectService _productService;
 
-        public ProjectController(IProductService productService)
+        public ProjectController(IProjectService productService)
         {
                 _productService = productService;
         }

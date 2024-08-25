@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using ProjectManagement.Common.Dtos;
+using ProjectManagement.Domain.Entities;
 
 
 namespace ProjectManagement.Services
@@ -13,8 +14,7 @@ namespace ProjectManagement.Services
                  .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name))
                  .ForMember(dest => dest.UserId, opt => opt.MapFrom(src => src.UserId));
 
-
-            CreateMap<Domain.Entities.ProjectTask, ProjectTaskDto>()
+            CreateMap<ProjectTask, ProjectTaskDto>()
                 .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
                 .ForMember(dest => dest.ProjectId, opt => opt.MapFrom(src => src.ProjectId))
                 .ForMember(dest => dest.Title, opt => opt.MapFrom(src => src.Title))
@@ -23,6 +23,14 @@ namespace ProjectManagement.Services
                 .ForMember(dest => dest.Status, opt => opt.MapFrom(src => src.Status))
                 .ForMember(dest => dest.Priority, opt => opt.MapFrom(src => src.Priority));
 
+            CreateMap<ProjectTaskHistory, ProjectTaskHistoryDto>()
+                .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
+                .ForMember(dest => dest.ProjectTaskId, opt => opt.MapFrom(src => src.ProjectTaskId))
+                .ForMember(dest => dest.UserId, opt => opt.MapFrom(src => src.UserId))
+                .ForMember(dest => dest.DateTime, opt => opt.MapFrom(src => src.DateTime))
+                .ForMember(dest => dest.Type, opt => opt.MapFrom(src => src.Type))
+                .ForMember(dest => dest.OldValues, opt => opt.MapFrom(src => src.OldValues))
+                .ForMember(dest => dest.NewValues, opt => opt.MapFrom(src => src.NewValues));
         }
     }
 }

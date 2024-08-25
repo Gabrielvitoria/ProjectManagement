@@ -2,7 +2,7 @@
 
 namespace ProjectManagement.Services.Interfaces
 {
-    public interface IProductService
+    public interface IProjectService
     {
         Task<IEnumerable<ProjectDto>> GetAllByUserIdAsync(Guid userId);
         Task<ProjectDto> CreateAsync(ProjectDto product);

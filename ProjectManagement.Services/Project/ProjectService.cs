@@ -5,11 +5,11 @@ using ProjectManagement.Services.Interfaces;
 
 namespace ProjectManagement.Services.Project
 {
-    public  class ProjectService : IProductService
+    public  class ProjectService : IProjectService
     {
-        private readonly IProductRepository _productRepository;
+        private readonly IProjectRepository _productRepository;
         private readonly IMapper _mapper;
-        public ProjectService(IProductRepository productRepository, IMapper mapper)
+        public ProjectService(IProjectRepository productRepository, IMapper mapper)
         {
             _productRepository = productRepository;
             _mapper = mapper;

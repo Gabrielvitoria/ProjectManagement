@@ -2,7 +2,7 @@
 
 namespace ProjectManagement.Infra.Interfaces
 {
-    public interface IProductRepository
+    public interface IProjectRepository
     {
         Task<IEnumerable<Project>> GetAllByUserIdAsync(Guid id);
         Task<Project> GetByIdAsync(Guid id);

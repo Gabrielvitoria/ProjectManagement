@@ -4,7 +4,7 @@ using ProjectManagement.Infra.Interfaces;
 
 namespace ProjectManagement.Infra.Repositories
 {
-    public class ProductRepository : IProductRepository
+    public class ProductRepository : IProjectRepository
     {
 
         private ProjectManagementContext _context;

@@ -4,10 +4,9 @@ namespace ProjectManagement.Infra.Interfaces
 {
     public interface IProjectTaskHistoryRepository
     {
-        Task<IEnumerable<ProjectTaskHistory>> GetAllAsync();
-        Task<ProjectTaskHistory> GetByIdAsync(Guid id);
+        Task<IEnumerable<ProjectTaskHistory>> GetAllByProjectTaskIdAsync(Guid projectTaskId);
+        
         Task<ProjectTaskHistory> CreateAsync(ProjectTaskHistory history);
-        Task<ProjectTaskHistory> UpdateAsync(ProjectTaskHistory history);
-        Task<ProjectTaskHistory> DeleteAsync(ProjectTaskHistory history); 
+        
     }
 }
