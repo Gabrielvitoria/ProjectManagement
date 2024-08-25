@@ -12,7 +12,7 @@ namespace ProjectManagement.Domain.Entities
         {
 
         }
-        public ProjectTask(Guid projectId, string title, string description, DateTime dueDate, TaskStatusEnum status, Guid userId, TaskPriorityEnum? priority)
+        public ProjectTask(Guid projectId, string title, string description, DateTime dueDate, Guid userId, TaskPriorityEnum? priority)
         {
    ;
 
@@ -21,7 +21,7 @@ namespace ProjectManagement.Domain.Entities
             Title = title;
             Description = description;
             DueDate = dueDate;
-            Status = status;
+            Status = TaskStatusEnum.Pending;
             Priority = priority ?? TaskPriorityEnum.Low;   
         }
 

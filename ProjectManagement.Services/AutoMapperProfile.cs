@@ -30,6 +30,13 @@ namespace ProjectManagement.Services
                 .ForMember(dest => dest.DueDate, opt => opt.MapFrom(src => src.DueDate))
                 .ForMember(dest => dest.Status, opt => opt.MapFrom(src => src.Status))
                 .ForMember(dest => dest.Priority, opt => opt.MapFrom(src => src.Priority));
+
+            CreateMap<CreateProjectTaskDto, ProjectTask>()
+                .ForMember(dest => dest.ProjectId, opt => opt.MapFrom(src => src.ProjectId))
+                .ForMember(dest => dest.Title, opt => opt.MapFrom(src => src.Title))
+                .ForMember(dest => dest.Description, opt => opt.MapFrom(src => src.Description))
+                .ForMember(dest => dest.DueDate, opt => opt.MapFrom(src => src.DueDate))
+                .ForMember(dest => dest.Priority, opt => opt.MapFrom(src => src.Priority));
             #endregion
 
             #region ProjectTaskHistory

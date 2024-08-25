@@ -8,7 +8,7 @@ namespace ProjectManagement.Tests
         public void CreateProject()
         {
             var project = new Project("Projeto X", Guid.NewGuid());
-            var task = new ProjectTask(project.Id, "Tarefa ABC", "Executar Hoje", DateTime.Now, Domain.TaskStatusEnum.Pending, Guid.NewGuid(), Domain.TaskPriorityEnum.High);
+            var task = new ProjectTask(project.Id, "Tarefa ABC", "Executar Hoje", DateTime.Now, Guid.NewGuid(), Domain.TaskPriorityEnum.High);
 
             project.AddTask(task);
 
@@ -23,13 +23,13 @@ namespace ProjectManagement.Tests
             
             for (int i = 0; i < 20; i++)
             {
-                var task = new ProjectTask(project.Id, $"Tarefa ABC {i}", $"Executar Hoje {i}", DateTime.Now, Domain.TaskStatusEnum.Pending, Guid.NewGuid(), Domain.TaskPriorityEnum.High);
+                var task = new ProjectTask(project.Id, $"Tarefa ABC {i}", $"Executar Hoje {i}", DateTime.Now, Guid.NewGuid(), Domain.TaskPriorityEnum.High);
                 project.AddTask(task);
             }
 
             try
             {
-                var task = new ProjectTask(project.Id, $"Tarefa 666", $"Executar Hoje 666", DateTime.Now, Domain.TaskStatusEnum.Pending, Guid.NewGuid(), Domain.TaskPriorityEnum.High);
+                var task = new ProjectTask(project.Id, $"Tarefa 666", $"Executar Hoje 666", DateTime.Now, Guid.NewGuid(), Domain.TaskPriorityEnum.High);
                 project.AddTask(task);
             }
             catch (ApplicationException ex)

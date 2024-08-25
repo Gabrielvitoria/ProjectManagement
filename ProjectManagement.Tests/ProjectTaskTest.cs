@@ -8,7 +8,7 @@ namespace ProjectManagement.Tests
         [Fact]
         public void AlterTask()
         {
-            var task = new ProjectTask(Guid.NewGuid(), "Tarefa ABC", "Executar Hoje", DateTime.Now, Domain.TaskStatusEnum.Pending, Guid.NewGuid(), Domain.TaskPriorityEnum.High);
+            var task = new ProjectTask(Guid.NewGuid(), "Tarefa ABC", "Executar Hoje", DateTime.Now, Guid.NewGuid(), Domain.TaskPriorityEnum.High);
 
             var historico = task.Alter("Novo Tarefa", "Executar Amanhã", DateTime.Now, Domain.TaskStatusEnum.Completed, Guid.NewGuid());
 
@@ -18,7 +18,7 @@ namespace ProjectManagement.Tests
         [Fact]
         public void AlterStatus()
         {
-            var task = new ProjectTask(Guid.NewGuid(), "Tarefa ABC", "Executar Hoje", DateTime.Now, Domain.TaskStatusEnum.Pending, Guid.NewGuid(), Domain.TaskPriorityEnum.High);
+            var task = new ProjectTask(Guid.NewGuid(), "Tarefa ABC", "Executar Hoje", DateTime.Now, Guid.NewGuid(), Domain.TaskPriorityEnum.High);
 
             var historico = task.SetStatus(Domain.TaskStatusEnum.Completed, Guid.NewGuid());
 

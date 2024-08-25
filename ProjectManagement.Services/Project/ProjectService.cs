@@ -30,6 +30,11 @@ namespace ProjectManagement.Services.Project
             return _mapper.Map<IEnumerable<ProjectDto>>(projects);
         }
 
+        public async Task<Domain.Entities.Project> GetById(Guid id)
+        {
+            return await _productRepository.GetByIdAsync(id);
+        }
+
         public Task<ProjectDto> UpdateAsync(ProjectDto product)
         {
             throw new NotImplementedException();

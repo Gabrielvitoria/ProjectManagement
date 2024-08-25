@@ -22,7 +22,7 @@
         public void AddTask(ProjectTask task)
         {
             if (ProjectTask?.Count == 20) 
-                throw new ApplicationException("Erro: Max task in project");
+                throw new ApplicationException($"Erro: Max task in project {Name}");
 
             ProjectTask?.Add(task);
         }
