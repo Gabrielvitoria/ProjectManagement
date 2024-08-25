@@ -4,6 +4,7 @@ using ProjectManagement.Common.CreateDto;
 using ProjectManagement.Common.Dtos;
 using ProjectManagement.Domain.Entities;
 using ProjectManagement.Services.Interfaces;
+using ProjectManagement.Services.Project;
 
 namespace ProjectManagement.Controllers
 {
@@ -12,10 +13,15 @@ namespace ProjectManagement.Controllers
     public class ProjectTaskController : ControllerBase
     {
         private readonly IProjectTaskService _projectTaskService;
+        private readonly IProjectTaskCommentService _projectTaskCommentService;
 
-        public ProjectTaskController(IProjectTaskService projectTaskService)
+
+        public ProjectTaskController(IProjectTaskService projectTaskService , IProjectTaskCommentService projectTaskCommentService)
         {
             _projectTaskService = projectTaskService;
+            _projectTaskCommentService = projectTaskCommentService;
+            _projectTaskCommentService = projectTaskCommentService;
+
         }
 
 
@@ -48,7 +54,21 @@ namespace ProjectManagement.Controllers
                 throw ex;
             }
         }
-        
+
+        [Route("Comment")]
+        [HttpPost]
+        public async Task<IActionResult> PostCommentAsync(CreateProjectTaskCommentDto createProjectTaskCommentDto)
+        {
+            try
+            {
+                return Ok(await _projectTaskCommentService.CreateAsync(createProjectTaskCommentDto));
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         [Route("AlterStatus")]
         [HttpPatch]
         public async Task<IActionResult> PatchAsync(AlterStatusProjectTaskDto alterStatusProjectTaskDto)

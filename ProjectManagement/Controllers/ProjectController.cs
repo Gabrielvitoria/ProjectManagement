@@ -1,9 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ProjectManagement.Common.CreateDto;
-using ProjectManagement.Common.Dtos;
-using ProjectManagement.Domain.Entities;
 using ProjectManagement.Services.Interfaces;
-using ProjectManagement.Services.Project;
 
 namespace ProjectManagement.Controllers
 {
@@ -15,9 +12,8 @@ namespace ProjectManagement.Controllers
 
         public ProjectController(IProjectService projectService)
         {
-                _projectService = projectService;
+            _projectService = projectService;
         }
-
 
         [HttpGet(Name = "GetByUserId")]
         public async Task<IActionResult> GetAllByUserIdAsync(Guid userId)
@@ -63,5 +59,6 @@ namespace ProjectManagement.Controllers
                 throw ex;
             }
         }
+             
     }
 }

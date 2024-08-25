@@ -30,6 +30,9 @@ builder.Services.AddTransient<IProjectTaskHistoryService, ProjectTaskHistoryServ
 builder.Services.AddTransient<IProjectTaskHistoryRepository, ProjectTaskHistoryRepository>();
 
 
+builder.Services.AddTransient<IProjectTaskCommentService, ProjectTaskCommentService>();
+builder.Services.AddTransient<IProjectTaskCommentRepository, ProjectTaskCommentRepository>();
+
 
 var connectionString = builder.Configuration.GetConnectionString("Default");
 

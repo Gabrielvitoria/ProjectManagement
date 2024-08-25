@@ -17,6 +17,7 @@ namespace ProjectManagement.Infra
         public virtual DbSet<Project> Project { get; set; }
         public virtual DbSet<ProjectTask> ProjectTask { get; set; }
         public virtual DbSet<ProjectTaskHistory> ProjectTaskHistory { get; set; }
+        public virtual DbSet<ProjectTaskComment> ProjectTaskComment { get; set; }
 
      
     }

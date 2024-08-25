@@ -39,6 +39,14 @@ namespace ProjectManagement.Services
                 .ForMember(dest => dest.Priority, opt => opt.MapFrom(src => src.Priority));
             #endregion
 
+            #region ProjectTaskCommentDto
+            CreateMap<ProjectTaskComment, ProjectTaskCommentDto > ()
+                .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
+                .ForMember(dest => dest.ProjectTaskId, opt => opt.MapFrom(src => src.ProjectTaskId))
+                .ForMember(dest => dest.UserId, opt => opt.MapFrom(src => src.UserId))
+                .ForMember(dest => dest.Description, opt => opt.MapFrom(src => src.Description));
+            #endregion
+
             #region ProjectTaskHistory
             CreateMap<ProjectTaskHistory, ProjectTaskHistoryDto>()
                 .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
