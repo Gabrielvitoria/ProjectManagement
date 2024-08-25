@@ -34,12 +34,12 @@ namespace ProjectManagement.Infra.Repositories
 
         public async Task<Project> GetByIdAsync(Guid id)
         {
-            return await _context.Project.Include(i => i.ProjectTask).FirstOrDefaultAsync(x => x.Id.Equals(id));
+            return await _context.Project.AsNoTracking().Include(i => i.ProjectTask).FirstOrDefaultAsync(x => x.Id.Equals(id));
         }
 
         public async Task<Project> GetByIdForDeleteAsync(Guid id)
         {
-            return await _context.Project.Include(i => i.ProjectTask)
+            return await _context.Project.AsNoTracking().Include(i => i.ProjectTask)
                                          .FirstOrDefaultAsync(x => x.Id.Equals(id) &&
                                                                   !x.ProjectTask.Any() ||
                                                                    x.ProjectTask.All(t => t.Status.Equals(TaskStatusEnum.Completed)));

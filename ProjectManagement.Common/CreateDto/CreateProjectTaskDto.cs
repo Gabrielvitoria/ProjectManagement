@@ -8,6 +8,7 @@ namespace ProjectManagement.Common.CreateDto
         [Required]
         public Guid ProjectId { get; set; }
 
+        [Required]
         public Guid UserId { get; set; }
 
         [Required]
