@@ -1,14 +1,14 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using ProjectManagement.Domain;
 using ProjectManagement.Domain.Entities;
 using ProjectManagement.Infra.Interfaces;
 
 namespace ProjectManagement.Infra.Repositories
 {
-    public class ProductRepository : IProjectRepository
+    public class ProjectRepository : IProjectRepository
     {
-
         private ProjectManagementContext _context;
-        public ProductRepository(ProjectManagementContext context)
+        public ProjectRepository(ProjectManagementContext context)
         {
             _context = context;
         }
@@ -21,9 +21,10 @@ namespace ProjectManagement.Infra.Repositories
 
         }
 
-        public Task<Project> DeleteAsync(Guid id)
+        public async Task DeleteAsync(Project project, CancellationToken cancellationToken = default(CancellationToken))
         {
-            throw new NotImplementedException();
+            _context.Project.Remove(project);
+            await _context.SaveChangesAsync(cancellationToken);
         }
 
         public async Task<IEnumerable<Project>> GetAllByUserIdAsync(Guid id)
@@ -34,6 +35,15 @@ namespace ProjectManagement.Infra.Repositories
         public async Task<Project> GetByIdAsync(Guid id)
         {
             return await _context.Project.Include(i => i.ProjectTask).FirstOrDefaultAsync(x => x.Id.Equals(id));
+        }
+
+        public async Task<Project> GetByIdForDeleteAsync(Guid id)
+        {
+            return await _context.Project.Include(i => i.ProjectTask)
+                                         .FirstOrDefaultAsync(x => x.Id.Equals(id) &&
+                                                                  !x.ProjectTask.Any() ||
+                                                                   x.ProjectTask.All(t => t.Status.Equals(TaskStatusEnum.Completed)));
+
         }
 
         public async Task<Project> UpdateAsync(Project project)

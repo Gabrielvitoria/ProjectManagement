@@ -21,16 +21,13 @@ builder.Services.AddAutoMapper(typeof(AutoMapperProfile));
 
 //Services and Reposytory
 builder.Services.AddTransient<IProjectService, ProjectService>();
-builder.Services.AddTransient<IProjectRepository, ProductRepository>();
+builder.Services.AddTransient<IProjectRepository, ProjectRepository>();
 
 builder.Services.AddTransient<IProjectTaskService, ProjectTaskService>();
 builder.Services.AddTransient<IProjectTaskRepository, ProjectTaskRepository>();
 
 builder.Services.AddTransient<IProjectTaskHistoryService, ProjectTaskHistoryService>();
 builder.Services.AddTransient<IProjectTaskHistoryRepository, ProjectTaskHistoryRepository>();
-
-
-
 
 
 

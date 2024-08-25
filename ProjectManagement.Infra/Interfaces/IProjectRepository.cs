@@ -6,8 +6,9 @@ namespace ProjectManagement.Infra.Interfaces
     {
         Task<IEnumerable<Project>> GetAllByUserIdAsync(Guid id);
         Task<Project> GetByIdAsync(Guid id);
+        Task<Project> GetByIdForDeleteAsync(Guid id);
         Task<Project> CreateAsync(Project project);
         Task<Project> UpdateAsync(Project project);
-        Task<Project> DeleteAsync(Guid id);
+        Task DeleteAsync(Project project, CancellationToken cancellationToken = default(CancellationToken));
     }
 }
