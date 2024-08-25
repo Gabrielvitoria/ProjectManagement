@@ -1,8 +1,4 @@
-﻿using Newtonsoft.Json.Linq;
-using ProjectManagement.Domain;
-using System;
-using System.ComponentModel;
-using System.Reflection;
+﻿using ProjectManagement.Domain;
 
 namespace ProjectManagement.Common.Dtos
 {
