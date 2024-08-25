@@ -1,4 +1,5 @@
-﻿using ProjectManagement.Common.CreateDto;
+﻿using ProjectManagement.Common.AlterDto;
+using ProjectManagement.Common.CreateDto;
 using ProjectManagement.Common.Dtos;
 
 namespace ProjectManagement.Services.Interfaces
@@ -7,5 +8,8 @@ namespace ProjectManagement.Services.Interfaces
     {
         Task<IEnumerable<ProjectTaskDto>> GetProjectTaskByProjectIdAsync(Guid projectId);
         Task<ProjectTaskDto> CreateAsync(CreateProjectTaskDto createProjectTaskDto);
+        Task<ProjectTaskDto> AlterStatusAsync(AlterStatusProjectTaskDto alterStatusProjectTaskDto);
+        Task<ProjectTaskDto> AlterAsync(AlterProjectTaskDto alterProjectTaskDto);
+        Task DeleteAsync(Guid projectTaskId);
     }
 }

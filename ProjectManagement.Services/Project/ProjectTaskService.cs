@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Newtonsoft.Json;
+using ProjectManagement.Common.AlterDto;
 using ProjectManagement.Common.CreateDto;
 using ProjectManagement.Common.Dtos;
 using ProjectManagement.Domain.Entities;
@@ -16,12 +17,66 @@ namespace ProjectManagement.Services.Project
         private readonly IProjectService _projectService;
         private readonly IMapper _mapper;
 
-        public ProjectTaskService(IProjectTaskRepository projectTaskRepository, IProjectService projectService,  IMapper mapper, IProjectTaskHistoryRepository projectTaskHistoryRepository)
+        public ProjectTaskService(IProjectTaskRepository projectTaskRepository, IProjectService projectService, IMapper mapper, IProjectTaskHistoryRepository projectTaskHistoryRepository)
         {
             _projectTaskRepository = projectTaskRepository;
             _projectService = projectService;
             _mapper = mapper;
             _projectTaskHistoryRepository = projectTaskHistoryRepository;
+        }
+
+        public async Task<ProjectTaskDto> AlterStatusAsync(AlterStatusProjectTaskDto alterStatusProjectTaskDto)
+        {
+            try
+            {
+                var projectTask = await _projectTaskRepository.GetByIdAsync(alterStatusProjectTaskDto.Id);
+
+                if (projectTask == null)
+                {
+                    throw new ApplicationException($"Error: Task of Project id Informed {alterStatusProjectTaskDto.Id} don't exist");
+                }
+
+                var history = projectTask.SetStatus(alterStatusProjectTaskDto.Status, alterStatusProjectTaskDto.UserId);
+
+                await _projectTaskHistoryRepository.CreateAsync(history);
+
+                return _mapper.Map<ProjectTaskDto>(projectTask);
+            }
+            catch (ApplicationException aex)
+            {
+                throw aex;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public async Task<ProjectTaskDto> AlterAsync(AlterProjectTaskDto alterProjectTaskDto)
+        {
+            try
+            {
+                var projectTask = await _projectTaskRepository.GetByIdAsync(alterProjectTaskDto.Id);
+
+                if (projectTask == null)
+                {
+                    throw new ApplicationException($"Error: Task of Project id Informed {alterProjectTaskDto.Id} don't exist");
+                }
+
+                var history = projectTask.Alter(alterProjectTaskDto.UserId, alterProjectTaskDto.Title, alterProjectTaskDto.Description, alterProjectTaskDto.DueDate);
+
+                await _projectTaskHistoryRepository.CreateAsync(history);
+
+                return _mapper.Map<ProjectTaskDto>(projectTask);
+            }
+            catch (ApplicationException aex)
+            {
+                throw aex;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public async Task<ProjectTaskDto> CreateAsync(CreateProjectTaskDto createProjectTaskDto)
@@ -50,7 +105,7 @@ namespace ProjectManagement.Services.Project
             {
                 throw ex;
             }
-            
+
         }
 
         public async Task<IEnumerable<ProjectTaskDto>> GetProjectTaskByProjectIdAsync(Guid projectId)
@@ -60,6 +115,29 @@ namespace ProjectManagement.Services.Project
                 var projectTasks = await _projectTaskRepository.GetByProjectIdAsync(projectId);
 
                 return _mapper.Map<IEnumerable<ProjectTaskDto>>(projectTasks);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public async Task DeleteAsync(Guid projectTaskId)
+        {
+            try
+            {
+                var projectTask = await _projectTaskRepository.GetByIdAsync(projectTaskId);
+
+                if (projectTask == null)
+                {
+                    throw new ApplicationException($"Error: Task of Project id Informed {projectTaskId} don't exist");
+                }
+
+                await _projectTaskRepository.DeleteAsync(projectTask);
+            }
+            catch(ApplicationException aex)
+            {
+                throw aex;
             }
             catch (Exception ex)
             {

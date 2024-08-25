@@ -33,7 +33,7 @@ namespace ProjectManagement.Infra.Repositories
 
         public async Task<Project> GetByIdAsync(Guid id)
         {
-            return await _context.Project.Include(i=> i.ProjectTask).FirstOrDefaultAsync(x => x.Id == id);
+            return await _context.Project.Include(i => i.ProjectTask).FirstOrDefaultAsync(x => x.Id.Equals(id));
         }
 
         public async Task<Project> UpdateAsync(Project project)

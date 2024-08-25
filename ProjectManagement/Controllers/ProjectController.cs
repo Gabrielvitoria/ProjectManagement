@@ -7,7 +7,7 @@ using ProjectManagement.Services.Interfaces;
 namespace ProjectManagement.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/v1/[controller]")]
     public class ProjectController : ControllerBase
     {
         private readonly IProjectService _productService;
