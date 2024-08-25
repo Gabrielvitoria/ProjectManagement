@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using ProjectManagement.Common.CreateDto;
 using ProjectManagement.Common.Dtos;
 using ProjectManagement.Infra.Interfaces;
 using ProjectManagement.Services.Interfaces;
@@ -13,12 +14,13 @@ namespace ProjectManagement.Services.Project
         {
             _productRepository = productRepository;
             _mapper = mapper;
-
         }
 
-        public Task<ProjectDto> CreateAsync(ProjectDto product)
+        public async Task<ProjectDto> CreateAsync(CreateProjectDto newProjectDto)
         {
-            throw new NotImplementedException();
+            var project = _mapper.Map<Domain.Entities.Project>(newProjectDto);
+            var resultNewProject = await _productRepository.CreateAsync(project);
+            return _mapper.Map<ProjectDto>(resultNewProject);
         }
 
         public async Task<IEnumerable<ProjectDto>> GetAllByUserIdAsync(Guid userId)

@@ -13,9 +13,12 @@ namespace ProjectManagement.Infra.Repositories
             _context = context;
         }
 
-        public Task<Project> CreateAsync(Project product)
+        public async Task<Project> CreateAsync(Project project)
         {
-            throw new NotImplementedException();
+            await _context.Project.AddAsync(project);
+            await _context.SaveChangesAsync();
+            return project;
+
         }
 
         public Task<Project> DeleteAsync(Guid id)
@@ -25,17 +28,19 @@ namespace ProjectManagement.Infra.Repositories
 
         public async Task<IEnumerable<Project>> GetAllByUserIdAsync(Guid id)
         {
-           return await _context.Project.Where(x => x.UserId.Equals(id)).ToListAsync();
+            return await _context.Project.Where(x => x.UserId.Equals(id)).ToListAsync();
         }
 
-        public Task<Project> GetByIdAsync(Guid id)
+        public async Task<Project> GetByIdAsync(Guid id)
         {
-            throw new NotImplementedException();
+            return await _context.Project.FirstOrDefaultAsync(x => x.Id == id);
         }
 
-        public Task<Project> UpdateAsync(Project product)
+        public async Task<Project> UpdateAsync(Project project)
         {
-            throw new NotImplementedException();
+            _context.Project.Update(project);
+            _context.SaveChanges();
+            return project;
         }
     }
 }

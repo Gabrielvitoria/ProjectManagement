@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using ProjectManagement.Common.CreateDto;
 using ProjectManagement.Common.Dtos;
 using ProjectManagement.Domain.Entities;
 using ProjectManagement.Services.Interfaces;
@@ -23,6 +24,19 @@ namespace ProjectManagement.Controllers
             try
             {
                 return Ok(await _productService.GetAllByUserIdAsync(userId));
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Post(CreateProjectDto project)
+        {
+            try
+            {
+                return Ok(await _productService.CreateAsync(project));
             }
             catch (Exception ex)
             {

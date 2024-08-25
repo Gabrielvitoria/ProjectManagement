@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using ProjectManagement.Common.CreateDto;
 using ProjectManagement.Common.Dtos;
 using ProjectManagement.Domain.Entities;
 
@@ -9,11 +10,18 @@ namespace ProjectManagement.Services
     {
         public AutoMapperProfile()
         {
+            #region Project           
             CreateMap<Domain.Entities.Project, ProjectDto>()
                  .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
                  .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name))
                  .ForMember(dest => dest.UserId, opt => opt.MapFrom(src => src.UserId));
 
+            CreateMap<CreateProjectDto, Domain.Entities.Project>()
+                 .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name))
+                 .ForMember(dest => dest.UserId, opt => opt.MapFrom(src => src.UserId));
+            #endregion
+
+            #region ProjectTask
             CreateMap<ProjectTask, ProjectTaskDto>()
                 .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
                 .ForMember(dest => dest.ProjectId, opt => opt.MapFrom(src => src.ProjectId))
@@ -22,7 +30,9 @@ namespace ProjectManagement.Services
                 .ForMember(dest => dest.DueDate, opt => opt.MapFrom(src => src.DueDate))
                 .ForMember(dest => dest.Status, opt => opt.MapFrom(src => src.Status))
                 .ForMember(dest => dest.Priority, opt => opt.MapFrom(src => src.Priority));
+            #endregion
 
+            #region ProjectTaskHistory
             CreateMap<ProjectTaskHistory, ProjectTaskHistoryDto>()
                 .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
                 .ForMember(dest => dest.ProjectTaskId, opt => opt.MapFrom(src => src.ProjectTaskId))
@@ -31,6 +41,7 @@ namespace ProjectManagement.Services
                 .ForMember(dest => dest.Type, opt => opt.MapFrom(src => src.Type))
                 .ForMember(dest => dest.OldValues, opt => opt.MapFrom(src => src.OldValues))
                 .ForMember(dest => dest.NewValues, opt => opt.MapFrom(src => src.NewValues));
+            #endregion
         }
     }
 }
