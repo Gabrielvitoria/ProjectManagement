@@ -41,12 +41,7 @@ namespace ProjectManagement.Services.Project
             {
                 throw aex;
 
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-           
+            }           
         }
 
         public async Task<IEnumerable<ProjectDto>> GetAllByUserIdAsync(Guid userId)
@@ -56,7 +51,7 @@ namespace ProjectManagement.Services.Project
             return _mapper.Map<IEnumerable<ProjectDto>>(projects);
         }
 
-        public async Task<Domain.Entities.Project> GetById(Guid id)
+        public async Task<Domain.Entities.Project> GetByIdAsync(Guid id)
         {
             return await _projectRepository.GetByIdAsync(id);
         }      

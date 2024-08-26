@@ -4,6 +4,13 @@ namespace ProjectManagement.Tests
 {
     public class ProjectTaskTest
     {
+        [Fact]
+        public void CreateProjectTask()
+        {
+            var projectTask = new ProjectTask();
+            Assert.NotNull(projectTask);
+        }
+
 
         [Fact]
         public void AlterTask()

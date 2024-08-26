@@ -83,7 +83,7 @@ namespace ProjectManagement.Services.Project
         {
             try
             {
-                var project = await _projectService.GetById(createProjectTaskDto.ProjectId);
+                var project = await _projectService.GetByIdAsync(createProjectTaskDto.ProjectId);
 
                 if (project == null)
                 {

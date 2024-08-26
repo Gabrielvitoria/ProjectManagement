@@ -6,6 +6,13 @@ namespace ProjectManagement.Tests
     public class ProjectTaskHistoryTest
     {
         [Fact]
+        public void CreateHistoryNotNull()
+        {
+            var history = new ProjectTaskHistory();
+            Assert.NotNull(history);
+        }
+        
+        [Fact]
         public void CreateHistory()
         {
             var task = new ProjectTaskHistory(Guid.NewGuid(),

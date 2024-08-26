@@ -2,10 +2,12 @@
 using ProjectManagement.Common.CreateDto;
 using ProjectManagement.Common.Dtos;
 using ProjectManagement.Domain.Entities;
+using System.Diagnostics.CodeAnalysis;
 
 
 namespace ProjectManagement.Services
 {
+    [ExcludeFromCodeCoverage]
     public class AutoMapperProfile : Profile
     {
         public AutoMapperProfile()
