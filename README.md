@@ -24,6 +24,9 @@ Projeto para desafio da ferramenta de gerenciamento de projetos. O objetivo é d
 
 :heavy_check_mark: `Funcionalidade 10:` Permissão de acesso em relatório apenas para usuário com permissão de "gerente".
 
+:heavy_check_mark: `Funcionalidade 11:` Geração de token de acesso para API's que exegem permissão. 
+- Obs. Para gerar token utilizar a API (/api/Authenticate/login) com as credenciais: ` username: master | password: master`
+
 ## Ferramentas utilizadas
 
 <a> <img src="https://api.nuget.org/v3-flatcontainer/microsoft.dotnet.web.projecttemplates.8.0/8.0.6/icon" alt="java" width="40" height="40"/> .Net 8 </a> 
@@ -32,8 +35,10 @@ Projeto para desafio da ferramenta de gerenciamento de projetos. O objetivo é d
 
 ## Abrir e rodar o projeto
 Após baixar o projeto, você pode abrir com o `visual studio 2022` e executar utilizando docker da seguinte forma:
-- Acessar local onde baixou e executar: docker-compose up
-- Para gerar token: ` username: master | password: master`
+### Acessar local onde baixou e executar: 
+- docker build -t projectmanager-image-api -f Dockerfile .
+- docker-compose up -d
+
 
 ## Melhoraria no projeto
 - Criar um repositório para utilizar Dapper para os relatórios
