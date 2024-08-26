@@ -39,7 +39,6 @@ Após baixar o projeto, você pode abrir com o `visual studio 2022` e executar u
 - docker build -t projectmanager-image-api -f Dockerfile .
 - docker-compose up -d
 
-
 ## Melhoraria no projeto
 - Criar um repositório para utilizar Dapper para os relatórios
 - Passar para o appsettings.json a quantidade de tarefas permitidas e utilizar no serviço essa quantidade.
@@ -52,6 +51,10 @@ Após baixar o projeto, você pode abrir com o `visual studio 2022` e executar u
 - Possibildiade de um serviço realizar a limpesa da tabela de historico para registros que foram excluidos depois de um tempo
 - Notificar o usuário do relatório pronto por email e uma sessão dos relatorio que ele já gerou com um tempo de vida
 - Alterar as API's para que tenha segurança com controle acesso.
+
+## Cobertura de teste
+
+<a href="https://drive.google.com/uc?export=view&id=<FILEID>"><img src="https://drive.google.com/uc?export=view&id=11QQalJ0HYMm8kEtFMbi_jxLYVdF7oCzE" style="width: 650px; max-width: 100%; height: auto" title="Click to enlarge picture" />
 
 ###
 ## Desenvolvedores
