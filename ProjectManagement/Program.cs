@@ -1,10 +1,14 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using ProjectManagement.Common;
 using ProjectManagement.Infra;
 using ProjectManagement.Infra.Interfaces;
 using ProjectManagement.Infra.Repositories;
 using ProjectManagement.Services;
 using ProjectManagement.Services.Interfaces;
 using ProjectManagement.Services.Project;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -33,6 +37,8 @@ builder.Services.AddTransient<IProjectTaskCommentService, ProjectTaskCommentServ
 builder.Services.AddTransient<IProjectTaskCommentRepository, ProjectTaskCommentRepository>();
 
 builder.Services.AddTransient<IReportService, ReportService>();
+builder.Services.AddTransient<ITokenService, TokenService>();
+builder.Services.AddTransient<IUserRepository, UserRepository>();
 
 
 var connectionString = builder.Configuration.GetConnectionString("Default");
@@ -46,6 +52,32 @@ builder.Services.AddDbContext<ProjectManagementContext>(options =>
                       }
                       ));
 
+//autenticacao-autorizacao
+
+var key = Encoding.ASCII.GetBytes(Settings.Secret);
+builder.Services.AddAuthentication(x =>
+{
+    x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+})
+.AddJwtBearer(x =>
+{
+    x.RequireHttpsMetadata = false;
+    x.SaveToken = true;
+    x.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuerSigningKey = true,
+        IssuerSigningKey = new SymmetricSecurityKey(key),
+        ValidateIssuer = false,
+        ValidateAudience = false
+    };
+});
+
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("gerente", policy => policy.RequireClaim("Project", "gerente"));
+    
+});
 
 var app = builder.Build();
 

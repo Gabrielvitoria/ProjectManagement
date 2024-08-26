@@ -15,7 +15,7 @@ namespace ProjectManagement.Controllers
                 _reportService = reportService;
         }
 
-        //[Authorize(Roles = "Gerente")]
+        [Authorize(Roles = "gerente")]
         [Route("TaskPerformance")]
         [HttpGet]
         public async Task<IActionResult> GetAsync()
