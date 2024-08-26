@@ -46,10 +46,6 @@ namespace ProjectManagement.Services.Project
             {
                 throw aex;
             }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
         }
 
         public async Task<ProjectTaskDto> AlterAsync(AlterProjectTaskDto alterProjectTaskDto)
@@ -72,10 +68,6 @@ namespace ProjectManagement.Services.Project
             catch (ApplicationException aex)
             {
                 throw aex;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
             }
         }
 
@@ -110,16 +102,11 @@ namespace ProjectManagement.Services.Project
 
         public async Task<IEnumerable<ProjectTaskDto>> GetProjectTaskByProjectIdAsync(Guid projectId)
         {
-            try
-            {
-                var projectTasks = await _projectTaskRepository.GetByProjectIdAsync(projectId);
 
-                return _mapper.Map<IEnumerable<ProjectTaskDto>>(projectTasks);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            var projectTasks = await _projectTaskRepository.GetByProjectIdAsync(projectId);
+
+            return _mapper.Map<IEnumerable<ProjectTaskDto>>(projectTasks);
+
         }
 
         public async Task DeleteAsync(Guid projectTaskId)
@@ -135,13 +122,9 @@ namespace ProjectManagement.Services.Project
 
                 await _projectTaskRepository.DeleteAsync(projectTask);
             }
-            catch(ApplicationException aex)
+            catch (ApplicationException aex)
             {
                 throw aex;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
             }
         }
     }

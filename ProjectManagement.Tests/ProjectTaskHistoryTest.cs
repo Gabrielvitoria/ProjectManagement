@@ -15,7 +15,7 @@ namespace ProjectManagement.Tests
         [Fact]
         public void CreateHistory()
         {
-            var task = new ProjectTaskHistory(Guid.NewGuid(),
+            var projectTaskHistory = new ProjectTaskHistory(Guid.NewGuid(),
                                                 Guid.NewGuid(),
                                                 "Create",
                                                 JsonConvert.SerializeObject(new
@@ -27,7 +27,11 @@ namespace ProjectManagement.Tests
                                                     PropertA = "B",
                                                 }));
 
-            Assert.NotEqual(task.NewValues, task.OldValues);
+            var projectTask = new ProjectTask(Guid.NewGuid(), "Tarefa ABC", "Executar Hoje", DateTime.Now, Guid.NewGuid(), Domain.TaskPriorityEnum.High);
+
+            projectTaskHistory.ProjectTask = projectTask;
+
+            Assert.NotEqual(projectTaskHistory.NewValues, projectTaskHistory.OldValues);
         }
 
     }

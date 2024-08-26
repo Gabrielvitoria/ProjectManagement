@@ -61,5 +61,35 @@ namespace ProjectManagement.Tests
                 Assert.True(ex.Message.Equals("Erro: Max task in project"));
             }            
         }
+
+        [Fact]
+        public void RemoveWithEx()
+        {
+            var project = new Project("Projeto X", Guid.NewGuid());
+            var task = new ProjectTask(project.Id, $"Tarefa ABC", $"Executar Hoje", DateTime.Now, Guid.NewGuid(), Domain.TaskPriorityEnum.High);
+            
+            project.AddTask(task);
+
+            try
+            {
+                project.Remove();
+            }
+            catch (ApplicationException aex)
+            {
+                Assert.Equal("Erro: The Project contain task Pending. Finalize pending tasks before removing a project", aex.Message);
+            }
+        }
+        [Fact]
+        public void Remove()
+        {
+            var project = new Project("Projeto X", Guid.NewGuid());
+            var task = new ProjectTask(project.Id, $"Tarefa ABC", $"Executar Hoje", DateTime.Now, Guid.NewGuid(), Domain.TaskPriorityEnum.High);
+            task.SetStatus(Domain.TaskStatusEnum.Completed, Guid.NewGuid());
+            project.AddTask(task);
+
+            project.Remove();
+
+            Assert.Equal("Projeto X", project.Name);
+        }
     }
 }
