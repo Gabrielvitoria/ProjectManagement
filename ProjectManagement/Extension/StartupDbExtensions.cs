@@ -5,15 +5,15 @@ namespace ProjectManagement.Extension
 {
     public static class StartupDbExtensions
     {
-        public static void CreateDbIfNotExists(this IHost host) { 
+        public static async void CreateDbIfNotExists(this IHost host) { 
             using var scope = host.Services.CreateScope();
             var services = scope.ServiceProvider;
 
             var contextProject = services.GetRequiredService<ProjectManagementContext>();
 
 
-            contextProject.Database.EnsureCreated();    
-            contextProject.Database.MigrateAsync();    
+           await contextProject.Database.EnsureCreatedAsync();
+
         }
 
     }

@@ -42,7 +42,7 @@ builder.Services.AddTransient<ITokenService, TokenService>();
 builder.Services.AddTransient<IUserRepository, UserRepository>();
 
 
-var connectionString = builder.Configuration.GetConnectionString("Default");
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
 builder.Services.AddDbContext<ProjectManagementContext>(options =>
      options.UseMySql(connectionString,
@@ -54,7 +54,6 @@ builder.Services.AddDbContext<ProjectManagementContext>(options =>
                       ));
 
 //autenticacao-autorizacao
-
 var key = Encoding.ASCII.GetBytes(Settings.Secret);
 builder.Services.AddAuthentication(x =>
 {
@@ -74,7 +73,6 @@ builder.Services.AddAuthentication(x =>
     };
 });
 
-
 // Seguranca
 builder.Services.AddAuthorization(options =>
 {
@@ -84,8 +82,14 @@ builder.Services.AddAuthorization(options =>
 
 var app = builder.Build();
 
+using (var scope = app.Services.CreateAsyncScope())
+{
+    var dbContext = scope.ServiceProvider.GetRequiredService<ProjectManagementContext>();
+    await dbContext.Database.EnsureCreatedAsync();
+}
 
-app.CreateDbIfNotExists();
+
+//app.CreateDbIfNotExists();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

@@ -14,8 +14,8 @@ ENV ASPNETCORE_ENVIRONMENT="Development"
 FROM mcr.microsoft.com/dotnet/sdk:8.0-preview AS build
 COPY . ./src
 WORKDIR /src
-COPY ["ProjectManagement.csproj", "ProjectManagement"]
-COPY ["ProjectManagement/ProjectManagement.Common/ProjectManagement.Common.csproj", "ProjectManagement.Common"]
+COPY ["ProjectManagement/ProjectManagement.csproj", "ProjectManagement"]
+COPY ["ProjectManagement.Common/ProjectManagement.Common.csproj", "ProjectManagement.Common"]
 COPY ["ProjectManagement.Domain/ProjectManagement.Domain.csproj", "ProjectManagement.Domain"]
 COPY ["ProjectManagement.Infra/ProjectManagement.Infra.csproj", "ProjectManagement.Infra"]
 COPY ["ProjectManagement.Services/ProjectManagement.Services.csproj", "ProjectManagement.Services"]
