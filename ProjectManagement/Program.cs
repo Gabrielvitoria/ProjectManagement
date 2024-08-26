@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using ProjectManagement.Common;
+using ProjectManagement.Extension;
 using ProjectManagement.Infra;
 using ProjectManagement.Infra.Interfaces;
 using ProjectManagement.Infra.Repositories;
@@ -73,6 +74,8 @@ builder.Services.AddAuthentication(x =>
     };
 });
 
+
+// Seguranca
 builder.Services.AddAuthorization(options =>
 {
     options.AddPolicy("gerente", policy => policy.RequireClaim("Project", "gerente"));
@@ -80,6 +83,9 @@ builder.Services.AddAuthorization(options =>
 });
 
 var app = builder.Build();
+
+
+app.CreateDbIfNotExists();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
