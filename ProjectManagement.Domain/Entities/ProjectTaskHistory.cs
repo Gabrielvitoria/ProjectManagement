@@ -17,7 +17,7 @@ namespace ProjectManagement.Domain.Entities
             UserId = userId;
             DateTime = DateTime.Now;
             Type = type;
-            OldValues = oldValues;
+            OldValues = oldValues ?? string.Empty;
             NewValues = newValues;
         }
 

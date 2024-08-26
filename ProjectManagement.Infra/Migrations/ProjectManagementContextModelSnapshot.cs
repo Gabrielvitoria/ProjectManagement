@@ -73,6 +73,29 @@ namespace ProjectManagement.Infra.Migrations
                     b.ToTable("ProjectTask");
                 });
 
+            modelBuilder.Entity("ProjectManagement.Domain.Entities.ProjectTaskComment", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("char(36)");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<Guid>("ProjectTaskId")
+                        .HasColumnType("char(36)");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("char(36)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProjectTaskId");
+
+                    b.ToTable("ProjectTaskComment");
+                });
+
             modelBuilder.Entity("ProjectManagement.Domain.Entities.ProjectTaskHistory", b =>
                 {
                     b.Property<Guid>("Id")
@@ -112,6 +135,17 @@ namespace ProjectManagement.Infra.Migrations
                     b.HasOne("ProjectManagement.Domain.Entities.Project", "Project")
                         .WithMany("ProjectTask")
                         .HasForeignKey("ProjectId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Project");
+                });
+
+            modelBuilder.Entity("ProjectManagement.Domain.Entities.ProjectTaskComment", b =>
+                {
+                    b.HasOne("ProjectManagement.Domain.Entities.ProjectTask", "Project")
+                        .WithMany()
+                        .HasForeignKey("ProjectTaskId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

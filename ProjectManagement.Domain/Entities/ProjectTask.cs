@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using System.Diagnostics.CodeAnalysis;
 
 
 namespace ProjectManagement.Domain.Entities
@@ -12,7 +13,7 @@ namespace ProjectManagement.Domain.Entities
         {
 
         }
-        public ProjectTask(Guid projectId, string title, string description, DateTime dueDate, TaskStatusEnum status, Guid userId, TaskPriorityEnum? priority)
+        public ProjectTask(Guid projectId, string title, string description, DateTime dueDate, Guid userId, TaskPriorityEnum? priority)
         {
    ;
 
@@ -21,7 +22,7 @@ namespace ProjectManagement.Domain.Entities
             Title = title;
             Description = description;
             DueDate = dueDate;
-            Status = status;
+            Status = TaskStatusEnum.Pending;
             Priority = priority ?? TaskPriorityEnum.Low;   
         }
 
@@ -55,45 +56,41 @@ namespace ProjectManagement.Domain.Entities
 
             var history = new ProjectTaskHistory(this.Id,
                                                     userId,
-                                                    "SetStatus",
+                                                    "UpdateStatus",
                                                     JsonConvert.SerializeObject(new
                                                     {
-                                                        DueDate = this.DueDate
+                                                        Status = this.Status,
                                                     }),
                                                     JsonConvert.SerializeObject(new
                                                     {
-                                                        Status = status
+                                                        Status = status,
                                                     }));
 
             this.Status = status;
 
             return history;
-
         }
 
-        public ProjectTaskHistory Alter(string title, string description, DateTime dueDate, TaskStatusEnum status, Guid userId)
+        public ProjectTaskHistory Alter(Guid userId, string? title = null, string? description = null, DateTime? dueDate = null)
         {
             var history = new ProjectTaskHistory(this.Id,
                                                  userId,
-                                                 "Alter",
+                                                 "Update",
                                                  JsonConvert.SerializeObject(new
                                                  {
                                                      Title = this.Title,
                                                      Description = this.Description,
-                                                     DueDate = this.DueDate,
-                                                     Status = this.Status
+                                                     DueDate = this.DueDate,                                                     
                                                  }),
                                                 JsonConvert.SerializeObject(new
                                                 {
                                                     Title = title,
                                                     Description = description,
-                                                    DueDate = dueDate,
-                                                    Status = status
+                                                    DueDate = dueDate
                                                 }));
-            Title = title;
-            Description = description;
-            DueDate = dueDate;
-            Status = status;
+            Title = title ?? this.Title;
+            Description = description ?? this.Description;
+            DueDate = dueDate ?? this.DueDate;
 
             return history;
         }

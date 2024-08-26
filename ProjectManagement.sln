@@ -3,17 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35201.85
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectManagement", "ProjectManagement.csproj", "{52716880-84E6-4871-9478-BC25628C3891}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectManagement", "ProjectManagement\ProjectManagement.csproj", "{52716880-84E6-4871-9478-BC25628C3891}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectManagement.Services", "..\ProjectManagement.Services\ProjectManagement.Services.csproj", "{1C3197D6-7803-45B9-A872-4C5DCC28AF62}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectManagement.Services", "ProjectManagement.Services\ProjectManagement.Services.csproj", "{1C3197D6-7803-45B9-A872-4C5DCC28AF62}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectManagement.Domain", "..\ProjectManagement.Domain\ProjectManagement.Domain.csproj", "{D45858CC-7B7B-4963-863F-B53D65EE4443}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectManagement.Domain", "ProjectManagement.Domain\ProjectManagement.Domain.csproj", "{D45858CC-7B7B-4963-863F-B53D65EE4443}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectManagement.Infra", "..\ProjectManagement.Infra\ProjectManagement.Infra.csproj", "{F1845033-65A9-4F90-ABD3-ABF525E5AA9C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectManagement.Infra", "ProjectManagement.Infra\ProjectManagement.Infra.csproj", "{F1845033-65A9-4F90-ABD3-ABF525E5AA9C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectManagement.Common", "..\ProjectManagement.Common\ProjectManagement.Common.csproj", "{DBF16D31-4BEA-489F-A21B-F82FD68EEB48}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectManagement.Common", "ProjectManagement.Common\ProjectManagement.Common.csproj", "{DBF16D31-4BEA-489F-A21B-F82FD68EEB48}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectManagement.Tests", "..\ProjectManagement.Tests\ProjectManagement.Tests.csproj", "{CF7674D0-4C2F-4A7B-B94E-E18475E534AE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectManagement.Tests", "ProjectManagement.Tests\ProjectManagement.Tests.csproj", "{CF7674D0-4C2F-4A7B-B94E-E18475E534AE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

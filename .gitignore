@@ -15,3 +15,6 @@
 /ProjectManagement.Services/obj
 /ProjectManagement.Tests/bin/Debug/net8.0
 /ProjectManagement.Tests/obj
+/ProjectManagement/bin/Debug/net8.0
+/.vs
+/ProjectManagement/.vs/ProjectEvaluation
