@@ -1,0 +1,30 @@
+services:
+  api:
+    image: projectmanager-image-api
+    container_name: projectmanager-image-api
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on: 
+      - database
+    ports:
+      - "5000:80"
+    restart: always
+    environment: 
+      - DBHOST=database
+      - ASPNETCORE_ENVIRONMENT=Development
+  database:
+    image: mysql:8.0.22
+    container_name: mysqldb
+    ports:
+      - "3306:3306"
+    expose: 
+      - 3306
+    volumes:
+      - db-volume:/var/lib/mysql
+    restart: always
+    environment: 
+      MYSQL_ROOT_PASSWORD: 123456
+      MYSQL_DATABASE: ProjectManagerDb
+volumes:
+  db-volume:
