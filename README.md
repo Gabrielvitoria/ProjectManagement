@@ -42,7 +42,7 @@ Após baixar o projeto, você pode abrir com o `visual studio 2022` e executar u
 ## Melhoraria no projeto
 - Criar um repositório para utilizar Dapper para os relatórios
 - Passar para o appsettings.json a quantidade de tarefas permitidas e utilizar no serviço essa quantidade.
-- Rotnar a geração de torken com usuário real
+- Tornar a geração de torken com usuário real
 - Permtir informar datas como filtro no relatório e caso não informe assumir os 30 dias como padrão
 
 ## Refinamento para futuras implementações ou melhorias.
