@@ -46,7 +46,7 @@ Após baixar o projeto, você pode abrir com o `visual studio 2022` e executar u
 - Permtir informar datas como filtro no relatório e caso não informe assumir os 30 dias como padrão
 
 ## Refinamento para futuras implementações ou melhorias.
-- Possibilidade do relatório ser asyncrono e ser processado fora da aplicação.
+- Possibilidade do relatório ser assíncrono e ser processado fora da aplicação.
 - Possibilidade de criar um projeto passando as tarefas
 - Possibildiade de um serviço realizar a limpesa da tabela de historico para registros que foram excluidos depois de um tempo
 - Notificar o usuário do relatório pronto por email e uma sessão dos relatorio que ele já gerou com um tempo de vida
